@@ -1,22 +1,46 @@
+import { NaoAutenticadoGuard } from './shared/guards/nao-autenticado.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'tela-principal',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    redirectTo: 'tela-principal',
+    pathMatch: 'full',
+  },
+  {
+    path: 'cadastro-usuario',
+    loadChildren: () =>
+      import('./pages/cadastro-usuario/cadastro-usuario.module').then(
+        (m) => m.CadastroUsuarioPageModule
+      ),
+    canActivate: [NaoAutenticadoGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+    canActivate: [NaoAutenticadoGuard],
+  },
+  {
+    path: 'esqueceu-senha',
+    loadChildren: () =>
+      import('./pages/esqueceu-senha/esqueceu-senha.module').then(
+        (m) => m.EsqueceuSenhaPageModule
+      ),
+    canActivate: [NaoAutenticadoGuard],
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

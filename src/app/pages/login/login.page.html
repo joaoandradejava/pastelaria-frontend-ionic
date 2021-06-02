@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login">
+    <h1 class="texto-centralizado">Faça seu Login</h1>
+    <form [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Informe seu Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="senha" placeholder="Informe sua Senha"></ion-input>
+      </ion-item>
+      <div>
+        <ion-button class="botao" color="primary" (click)="realizarLogin()" [disabled]="formGroup.invalid">Entrar
+        </ion-button>
+      </div>
+    </form>
+
+    <div class="esqueceu-senha">
+      <a [routerLink]="['/esqueceu-senha']" routerLinkActive="router-link-active" >Esqueceu a senha?</a>
+    </div>
+  </div>
+</ion-content>

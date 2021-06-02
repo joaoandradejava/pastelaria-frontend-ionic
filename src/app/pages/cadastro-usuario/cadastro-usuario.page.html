@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cadastro Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cadastro-usuario">
+    <form [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome" placeholder="Informe seu Nome"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('nome').getError('required') && formGroup.get('nome').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Nome')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('nome').getError('minlength') || formGroup.get('nome').getError('maxlength') ) && formGroup.get('nome').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Nome', 3, 255)}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Informe seu Email"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('email').getError('required') && formGroup.get('email').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Email')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('email').getError('minlength') || formGroup.get('email').getError('maxlength') ) && formGroup.get('email').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Email', 0, 255)}}
+        </span>
+        <span class="mensagem-error" *ngIf="formGroup.get('email').getError('email') && formGroup.get('email').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('Email')}}
+        </span>
+
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="senha" placeholder="Informe sua Senha"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('senha').getError('required') && formGroup.get('senha').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Senha')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('senha').getError('minlength') || formGroup.get('senha').getError('maxlength') ) && formGroup.get('senha').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Senha', 0, 255)}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirmação da Senha</ion-label>
+        <ion-input type="password" formControlName="confirmacaoSenha" placeholder="Confirme sua Senha"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('confirmacaoSenha').getError('required') && formGroup.get('confirmacaoSenha').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Confirmação da Senha')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('confirmacaoSenha').getError('minlength') || formGroup.get('confirmacaoSenha').getError('maxlength') ) && formGroup.get('confirmacaoSenha').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Confirmacao da Senha', 0, 255)}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input type="text" formControlName="telefone" [brmasker]="{mask: '(00) 0 0000-0000', type: 'num', len: 16}" placeholder="(00) 0 0000-0000"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('telefone').getError('required') && formGroup.get('telefone').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Telefone')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('telefone').getError('minlength') || formGroup.get('telefone').getError('maxlength') ) && formGroup.get('telefone').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('telefone')}}
+        </span>
+      </ion-item>
+
+      <div >
+        <ion-button class="botao" color="success" (click)="realizarCadastro()" [disabled]="formGroup.invalid">Realizar Cadastro
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

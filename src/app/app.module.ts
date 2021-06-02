@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingDismissInterceptor } from './shared/interceptors/loading-dismiss-interceptor';
+import { TokenJwtInterceptor } from './shared/interceptors/token-jwt-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +23,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenJwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ExceptionInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingDismissInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

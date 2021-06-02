@@ -19,6 +19,10 @@ export class AppComponent {
     {nome: 'Cadastrar-se', url: '/cadastro-usuario', icone: 'person-add-outline'}
   ]
 
+  rotasAutenticadas: Rota[] = [
+    {nome: 'Atualizar dados', url: 'atualizar-dados', icone: 'pencil-outline'}
+  ]
+
   constructor(private autenticacaoService: AutenticacaoService) {}
 
   public isLogado(): boolean{

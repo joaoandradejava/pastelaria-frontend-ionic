@@ -1,3 +1,4 @@
+import { LoadingService } from './../../shared/services/loading.service';
 import { UsuarioAutenticado } from './../../shared/models/usuario-autenticado';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private autenticacaoService: AutenticacaoService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -44,12 +46,13 @@ export class LoginPage implements OnInit {
 
   public realizarLogin(): void {
     if (this.formGroup.valid) {
+      this.loadingService.carregarLoading()
       this.loginService
         .realizarLogin(this.formGroup.value)
         .subscribe((data) => {
           let usuarioAutenticado: UsuarioAutenticado = data;
           this.autenticacaoService.autenticar(usuarioAutenticado);
-
+          this.loadingService.pararLoading()
           this.router.navigate(['']);
         });
     }

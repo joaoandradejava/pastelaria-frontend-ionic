@@ -10,7 +10,18 @@
 </ion-header>
 
 <ion-content>
-  <div>
+  <div class="esqueceu-senha">
+    <h1 class="texto-centralizado">Esqueceu A Senha</h1>
+    <p>Digite seu email aqui em baixo para que possamos lhe enviar uma nova senha para seu email!</p>
+    <form [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
 
+      <div>
+        <ion-button class="botao" (click)="enviarNovaSenha()" [disabled]="formGroup.invalid">Enviar nova senha</ion-button>
+      </div>
+    </form>
   </div>
 </ion-content>

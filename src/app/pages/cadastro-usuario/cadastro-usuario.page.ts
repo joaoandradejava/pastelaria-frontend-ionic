@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { TipoMensagem } from 'src/app/shared/models/tipo-mensagem';
 import { UsuarioCreateInput } from 'src/app/shared/models/usuario-create-input';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -17,7 +18,8 @@ export class CadastroUsuarioPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -99,6 +101,7 @@ export class CadastroUsuarioPage implements OnInit {
 
   public realizarCadastro(): void {
     if (this.formGroup.valid) {
+      this.loadingService.carregarLoading()
       let usuarioCreateInput: UsuarioCreateInput = this.formGroup.value
       usuarioCreateInput.telefone = this.getNumeroTelefoneSemMascara()
       this.usuarioService.realizarCadastro(usuarioCreateInput).subscribe((_) => {

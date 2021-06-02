@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +13,9 @@ import { EsqueceuSenhaPage } from './esqueceu-senha.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EsqueceuSenhaPageRoutingModule
+    EsqueceuSenhaPageRoutingModule,
+    ReactiveFormsModule
+
   ],
   declarations: [EsqueceuSenhaPage]
 })

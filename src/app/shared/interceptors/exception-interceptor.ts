@@ -24,8 +24,13 @@ export class ExceptionInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error) => {
         let mensagem: string = error.error.userMessage;
-        this.toastService.exibirMensagem(mensagem, 5000, TipoMensagem.ERROR);
-
+        let errors = error.error.errors;
+        if (errors !== undefined && errors !== null) {
+          mensagem = errors[0].userMessage;
+          this.toastService.exibirMensagem(mensagem, 5000, TipoMensagem.ERROR);
+        } else {
+          this.toastService.exibirMensagem(mensagem, 5000, TipoMensagem.ERROR);
+        }
         return throwError(error);
       })
     );

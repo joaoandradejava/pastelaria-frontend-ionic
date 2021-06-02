@@ -22,13 +22,20 @@
           <ion-icon [name]="rota.icone" slot="start"></ion-icon>
           <ion-label>{{rota.nome}}</ion-label>
         </ion-item>
-        <div *ngIf="!isLogado()">
+        <div *ngIf="!isLogado(); else logadoRota">
           <ion-item *ngFor="let rota of rotasNaoAutenticadas" [routerLink]="[rota.url]"
             routerLinkActive="router-link-active">
             <ion-icon [name]="rota.icone" slot="start"></ion-icon>
             <ion-label>{{rota.nome}}</ion-label>
           </ion-item>
         </div>
+        <ng-template #logadoRota>
+          <ion-item *ngFor="let rota of rotasAutenticadas" [routerLink]="[rota.url]"
+            routerLinkActive="router-link-active">
+            <ion-icon [name]="rota.icone" slot="start"></ion-icon>
+            <ion-label>{{rota.nome}}</ion-label>
+          </ion-item>
+        </ng-template>
         <ion-item [routerLink]="['/']" *ngIf="isLogado()" (click)="sair()" routerLinkActive="router-link-active">
           <ion-icon name="exit-outline" slot="start"></ion-icon>
           <ion-label>Sair</ion-label>

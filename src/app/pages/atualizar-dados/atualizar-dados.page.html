@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Atualizar Dados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="atualizar-dados">
+    <h1 class="texto-centralizado">Seus dados</h1>
+
+    <form [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('nome').getError('required') && formGroup.get('nome').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Nome')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('nome').getError('minlength') || formGroup.get('nome').getError('maxlength') ) && formGroup.get('nome').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Nome', 3, 255)}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [value]="clienteFullModel?.email" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cpf</ion-label>
+        <ion-input type="text" formControlName="cpf" [brmasker]="{mask: '000.000.000-00', type: 'num', len: 14}"
+          placeholder="(00) 0 0000-0000"></ion-input>
+
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('cpf').getError('minlength') || formGroup.get('cpf').getError('maxlength') ) && formGroup.get('cpf').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('Cpf')}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input type="text" formControlName="telefone" [brmasker]="{mask: '(00) 0 0000-0000', type: 'num', len: 16}"
+          placeholder="(00) 0 0000-0000"></ion-input>
+        <span class="mensagem-error"
+          *ngIf="formGroup.get('telefone').getError('required') && formGroup.get('telefone').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Telefone')}}
+        </span>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('telefone').getError('minlength') || formGroup.get('telefone').getError('maxlength') ) && formGroup.get('telefone').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('Telefone')}}
+        </span>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Celular</ion-label>
+        <ion-input type="text" formControlName="celular" [brmasker]="{mask: '(00) 0 0000-0000', type: 'num', len: 16}">
+        </ion-input>
+        <span class="mensagem-error"
+          *ngIf="(formGroup.get('celular').getError('minlength') || formGroup.get('celular').getError('maxlength') ) && formGroup.get('celular').touched">
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('Celular')}}
+        </span>
+      </ion-item>
+
+      <div>
+        <ion-button class="botao" (click)="confirmar()" [disabled]="formGroup.invalid" color="danger">Confirmar
+        </ion-button>
+      </div>
+    </form>
+
+  </div>
+</ion-content>

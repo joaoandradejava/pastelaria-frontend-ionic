@@ -1,6 +1,7 @@
 import { NaoAutenticadoGuard } from './shared/guards/nao-autenticado.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AutenticadoGuard } from './shared/guards/autenticado.guard';
 
 const routes: Routes = [
   {
@@ -34,6 +35,18 @@ const routes: Routes = [
         (m) => m.EsqueceuSenhaPageModule
       ),
     canActivate: [NaoAutenticadoGuard],
+  },
+  {
+    path: 'atualizar-dados',
+    loadChildren: () =>
+      import('./pages/atualizar-dados/atualizar-dados.module').then(
+        (m) => m.AtualizarDadosPageModule
+      ),
+    canActivate: [AutenticadoGuard],
+  },
+  {
+    path: 'meus-enderecos',
+    loadChildren: () => import('./pages/meus-enderecos/meus-enderecos.module').then( m => m.MeusEnderecosPageModule)
   },
 ];
 

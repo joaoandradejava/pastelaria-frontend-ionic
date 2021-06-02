@@ -71,7 +71,7 @@
         </span>
         <span class="mensagem-error"
           *ngIf="(formGroup.get('telefone').getError('minlength') || formGroup.get('telefone').getError('maxlength') ) && formGroup.get('telefone').touched">
-          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('telefone')}}
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoInvalido('Telefone')}}
         </span>
       </ion-item>
 

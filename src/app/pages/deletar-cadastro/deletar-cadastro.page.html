@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Deletar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h1 class="texto-centralizado">Deletar Conta</h1>
+    <p class="texto-centralizado">É importate resaltar que após deletar a sua conta, todos os dados serão perdidos e não
+      terá como recupera-la!
+    </p>
+    <div>
+      <ion-button (click)="deletarConta()" class="botao" color="danger">
+        Deletar conta
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

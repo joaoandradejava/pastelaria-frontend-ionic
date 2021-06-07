@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/atualizar-dados']" routerLinkActive="router-link-active">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Aterar A Senha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h1 class="texto-centralizado">Alterar senha</h1>
+    <form action="" [formGroup]="formGroup">
+      <ion-item>
+        <ion-label position="floating">Senha Atual</ion-label>
+        <ion-input type="password" formControlName="senhaAtual" placeholder="Informe a senha atual"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nova Senha</ion-label>
+        <ion-input type="password" formControlName="novaSenha" placeholder="Informe a nova senha"></ion-input>
+      </ion-item>
+      <div>
+        <ion-button color="danger" class="botao" (click)="alterarSenha()" [disabled]="formGroup.invalid">Alterar senha
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

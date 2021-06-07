@@ -63,28 +63,55 @@ const routes: Routes = [
   },
   {
     path: 'produto-categoria/:id',
-    loadChildren: () => import('./pages/produto-categoria/produto-categoria.module').then( m => m.ProdutoCategoriaPageModule)
+    loadChildren: () =>
+      import('./pages/produto-categoria/produto-categoria.module').then(
+        (m) => m.ProdutoCategoriaPageModule
+      ),
   },
   {
     path: 'produto-item/:id',
-    loadChildren: () => import('./pages/produto-item/produto-item.module').then( m => m.ProdutoItemPageModule)
+    loadChildren: () =>
+      import('./pages/produto-item/produto-item.module').then(
+        (m) => m.ProdutoItemPageModule
+      ),
   },
   {
     path: 'carrinho-de-compras',
-    loadChildren: () => import('./pages/carrinho-de-compras/carrinho-de-compras.module').then( m => m.CarrinhoDeComprasPageModule),
-    canActivate: [LogadoCarrinhoGuard]
+    loadChildren: () =>
+      import('./pages/carrinho-de-compras/carrinho-de-compras.module').then(
+        (m) => m.CarrinhoDeComprasPageModule
+      ),
+    canActivate: [LogadoCarrinhoGuard],
   },
   {
     path: 'meus-pedidos',
-    loadChildren: () => import('./pages/meus-pedidos/meus-pedidos.module').then( m => m.MeusPedidosPageModule),
-    canActivate: [AutenticadoGuard]
+    loadChildren: () =>
+      import('./pages/meus-pedidos/meus-pedidos.module').then(
+        (m) => m.MeusPedidosPageModule
+      ),
+    canActivate: [AutenticadoGuard],
   },
   {
     path: 'pedido-item/:id',
-    loadChildren: () => import('./pages/pedido-item/pedido-item.module').then( m => m.PedidoItemPageModule),
+    loadChildren: () =>
+      import('./pages/pedido-item/pedido-item.module').then(
+        (m) => m.PedidoItemPageModule
+      ),
+    canActivate: [AutenticadoGuard],
+  },
+  {
+    path: 'mudar-senha',
+    loadChildren: () =>
+      import('./pages/mudar-senha/mudar-senha.module').then(
+        (m) => m.MudarSenhaPageModule
+      ),
+    canActivate: [AutenticadoGuard],
+  },
+  {
+    path: 'deletar-conta',
+    loadChildren: () => import('./pages/deletar-cadastro/deletar-cadastro.module').then( m => m.DeletarCadastroPageModule),
     canActivate: [AutenticadoGuard]
   },
-
 ];
 
 @NgModule({

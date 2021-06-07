@@ -1,13 +1,26 @@
-.tabela{
+.tabela {
   width: 100%;
   text-align: center;
 }
 
-.espacamento{
+.espacamento {
   margin-bottom: 15px;
 }
 
-.btn-finalizar-pedido{
-  margin-top: 15px;
+.btn-finalizar-pedido {
+  margin-top: 25px;
   width: 100%;
+}
+
+.valor-total {
+  text-align: end;
+  font-weight: bold;
+}
+
+.font-maior {
+  font-size: 20px;
+}
+
+.tr-valor-total td {
+  padding: 10px 0px;
 }

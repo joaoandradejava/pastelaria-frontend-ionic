@@ -43,4 +43,14 @@ export class Carrinho {
       }
     });
   }
+
+  public calcularValorTotal(): number {
+    let valorTotal: number = 0.0
+    this.itens.forEach(item => {
+      valorTotal += item.preco * item.quantidade
+    })
+
+
+    return valorTotal
+  }
 }

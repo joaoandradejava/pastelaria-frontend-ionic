@@ -67,6 +67,12 @@ export class CarrinhoDeComprasPage implements OnInit {
     this.buscarCarrinho();
   }
 
+  public valorTotal(): number{
+    let carrinho: Carrinho = this.carrinhoService.buscarCarrinho()
+
+    return carrinho.calcularValorTotal()
+  }
+
   public finalizarPedido(): void {
     if (this.enderecos.length <= 0) {
       this.router.navigate(['/endereco-novo']);

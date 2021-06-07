@@ -10,13 +10,15 @@
 <ion-content>
 
   <div class="container">
-    <div *ngIf="carrinho === null; else temCarrinho" >
+    <div *ngIf="carrinho === null; else temCarrinho">
       <h1 class="texto-centralizado">Você ainda não possui nenhum item no carrinho!</h1>
     </div>
     <ng-template #temCarrinho>
-      <ion-button class="espacamento" (click)="limparCarrinho()">
-        Limpar carrinho
-      </ion-button>
+      <div>
+        <ion-button class="espacamento" color="danger" (click)="limparCarrinho()">
+          Limpar Carrinho
+        </ion-button>
+      </div>
       <div>
         <table class="tabela">
           <thead>
@@ -26,16 +28,24 @@
             <th>Quantidade</th>
           </thead>
           <tbody>
-            <tr *ngFor="let item of carrinho.itens" >
+            <tr *ngFor="let item of carrinho.itens">
               <td>{{item.id}}</td>
               <td>{{item.nome}}</td>
               <td>{{item.preco | currency}}</td>
-              <td><ion-button size="small" color="danger" (click)="diminuirQuantidade(item)" shape="round">-</ion-button> {{item.quantidade}}X <ion-button size="small" color="success" (click)="aumentarQuantidade(item)" shape="round">+</ion-button></td>
+              <td>
+                <ion-button size="small" color="danger" (click)="diminuirQuantidade(item)" shape="round">-</ion-button>
+                {{item.quantidade}}X <ion-button size="small" color="success" (click)="aumentarQuantidade(item)"
+                  shape="round">+</ion-button>
+              </td>
+            </tr>
+            <tr class="tr-valor-total">
+              <td colspan="3" class="valor-total font-maior">Valor Total</td>
+              <td><span class="cor-preco font-maior">{{valorTotal() | currency}}</span></td>
             </tr>
           </tbody>
         </table>
         <div>
-          <ion-button (click)="finalizarPedido()" class="btn-finalizar-pedido" color="danger">
+          <ion-button (click)="finalizarPedido()" class="btn-finalizar-pedido">
             Finalizar Pedido
           </ion-button>
         </div>

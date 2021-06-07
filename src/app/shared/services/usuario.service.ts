@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UsuarioCreateInput } from '../models/usuario-create-input';
 import { UsuarioUpdateInput } from '../models/usuario-update-input';
 import { EnderecoCorreioModel } from '../models/endereco-correio-model';
+import { AlterarSenhaInput } from '../models/alterar-senha-input';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,10 @@ export class UsuarioService {
       Backend.baseUsuario + `/${usuarioId}`,
       usuarioUpdateInput
     );
+  }
+
+  public deletarPorId(id: number): Observable<any> {
+    return this.http.delete(Backend.baseUsuario + `/${id}`);
   }
 
   public adicionarEndereco(
@@ -61,5 +66,9 @@ export class UsuarioService {
       Backend.baseUsuario + '/esqueci-senha',
       esqueciSenhaInput
     );
+  }
+
+  public alterarSenha(alterarSenhaInput: AlterarSenhaInput): Observable<any> {
+    return this.http.put(Backend.baseUsuario + '/senha', alterarSenhaInput);
   }
 }

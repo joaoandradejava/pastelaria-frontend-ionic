@@ -1,3 +1,5 @@
+import { ReactiveFormsModule } from '@angular/forms';
+import { EcolherEnderecoComponent } from './components/ecolher-endereco/ecolher-endereco.component';
 import { ExceptionInterceptor } from './shared/interceptors/exception-interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,13 +15,15 @@ import { LoadingDismissInterceptor } from './shared/interceptors/loading-dismiss
 import { TokenJwtInterceptor } from './shared/interceptors/token-jwt-interceptor';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EcolherEnderecoComponent],
   entryComponents: [],
+  exports: [EcolherEnderecoComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

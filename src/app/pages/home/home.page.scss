@@ -25,3 +25,18 @@
 #container a {
   text-decoration: none;
 }
+
+.lista{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  list-style: none;
+}
+.lista li {
+  margin: 5px;
+}
+
+.lista a{
+  font-size: 1.1em;
+}

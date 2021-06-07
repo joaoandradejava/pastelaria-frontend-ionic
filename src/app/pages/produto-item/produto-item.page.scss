@@ -1,0 +1,26 @@
+.botao-centralizado{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.titulo{
+  color: #3e3e3e;
+}
+
+.imagem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.descricao{
+  color: #717171;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.preco{
+  color: #3e3e3e;
+  font-size: 14px;
+}

@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
       this.loginService
         .realizarLogin(this.formGroup.value)
         .subscribe((data) => {
+          localStorage.clear()
           let usuarioAutenticado: UsuarioAutenticado = data;
           this.autenticacaoService.autenticar(usuarioAutenticado);
           this.loadingService.pararLoading()

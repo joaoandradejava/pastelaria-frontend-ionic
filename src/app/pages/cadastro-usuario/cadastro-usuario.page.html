@@ -9,6 +9,7 @@
 
 <ion-content>
   <div class="cadastro-usuario">
+    <h1 class="texto-centralizado">Faça seu cadastro</h1>
     <form [formGroup]="formGroup">
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
@@ -55,16 +56,19 @@
         <ion-input type="password" formControlName="confirmacaoSenha" placeholder="Confirme sua Senha"></ion-input>
         <span class="mensagem-error"
           *ngIf="formGroup.get('confirmacaoSenha').getError('required') && formGroup.get('confirmacaoSenha').touched">
-          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Confirmação da Senha')}}
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Confirmação da
+          Senha')}}
         </span>
         <span class="mensagem-error"
           *ngIf="(formGroup.get('confirmacaoSenha').getError('minlength') || formGroup.get('confirmacaoSenha').getError('maxlength') ) && formGroup.get('confirmacaoSenha').touched">
-          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Confirmacao da Senha', 0, 255)}}
+          <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoTamanhoCaracteres('Confirmacao da
+          Senha', 0, 255)}}
         </span>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Telefone</ion-label>
-        <ion-input type="text" formControlName="telefone" [brmasker]="{mask: '(00) 0 0000-0000', type: 'num', len: 16}" placeholder="(00) 0 0000-0000"></ion-input>
+        <ion-input type="text" formControlName="telefone" [brmasker]="{mask: '(00) 0 0000-0000', type: 'num', len: 16}"
+          placeholder="(00) 0 0000-0000"></ion-input>
         <span class="mensagem-error"
           *ngIf="formGroup.get('telefone').getError('required') && formGroup.get('telefone').touched">
           <ion-icon name="information-circle-outline"></ion-icon> {{getMensagemCampoObrigatorio('Telefone')}}
@@ -75,8 +79,9 @@
         </span>
       </ion-item>
 
-      <div >
-        <ion-button class="botao" color="success" (click)="realizarCadastro()" [disabled]="formGroup.invalid">Realizar Cadastro
+      <div>
+        <ion-button class="botao" color="success" (click)="realizarCadastro()" [disabled]="formGroup.invalid">Realizar
+          Cadastro
         </ion-button>
       </div>
     </form>

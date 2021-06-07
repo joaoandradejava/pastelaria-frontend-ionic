@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/meus-pedidos']" routerLinkActive="router-link-active">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-list>
+      <ion-item *ngFor="let item of pedidoFullModel?.itens">
+        <ion-label>
+          <h3>{{item?.quantidade}}X - {{item.id.produto.nome}}</h3>
+        </ion-label>
+        <ion-label>
+          <h3>{{(item?.valor * item?.quantidade) | currency}}</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h2>Valor Total</h2>
+        </ion-label>
+        <ion-label>
+          <h2>{{pedidoFullModel?.valorTotal | currency}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <div>
+      <h3 class="texto-centralizado">Entregar Em</h3>
+      <span class="texto-centralizado" style="display: block;">{{pedidoFullModel?.enderecoDeEntrega.endereco}},
+        {{pedidoFullModel?.enderecoDeEntrega.numero}} -
+        {{pedidoFullModel?.enderecoDeEntrega.bairro}} - {{pedidoFullModel?.enderecoDeEntrega.estado}} -
+        {{pedidoFullModel?.enderecoDeEntrega.cidade}}/{{pedidoFullModel?.enderecoDeEntrega.estado}}</span>
+
+      <div *ngIf="pedidoFullModel?.enderecoDeEntrega.complemento">
+        <h3 class="texto-centralizado">Ponto de referência</h3>
+        <span class="texto-centralizado info">{{pedidoFullModel?.enderecoDeEntrega.complemento}}</span>
+      </div>
+    </div>
+    <div>
+      <h3 class="texto-centralizado">Data do Pedido</h3>
+      <span class="texto-centralizado info">{{pedidoFullModel?.data | date}}</span>
+      <h3 class="texto-centralizado">Status do Pedido</h3>
+      <span class="texto-centralizado info">{{pedidoFullModel?.situacaoPedido}}</span>
+      <h3 class="texto-centralizado">Situação do Pagamento</h3>
+      <span class="texto-centralizado info">{{pedidoFullModel?.pagamento.situacaoPagamento}}</span>
+    </div>
+  </div>
+</ion-content>

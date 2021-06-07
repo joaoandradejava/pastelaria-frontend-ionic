@@ -1,0 +1,21 @@
+<div class="container">
+  <div>
+    <a (click)="fechar()" style="font-size: 20px; margin: 10px;">Close</a>
+  </div>
+  <div>
+    <h1 class="texto-centralizado">Escolha um Endereço de entrega</h1>
+  </div>
+ <div>
+  <form action="" [formGroup]="formGroup">
+    <ion-radio-group  formControlName="enderecoDeEntrega">
+      <ion-item *ngFor="let endereco of enderecos" >
+        <ion-label>{{endereco?.bairro}}</ion-label>
+        <ion-radio slot="start" [value]="endereco.id"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <div>
+      <ion-button class="botao" color="danger" (click)="confimar()" [disabled]="formGroup.invalid">Confirmar</ion-button>
+    </div>
+  </form>
+ </div>
+</div>

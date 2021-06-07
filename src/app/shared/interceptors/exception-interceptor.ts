@@ -10,12 +10,18 @@ import { Observable, throwError } from 'rxjs';
 import 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { ToastService } from '../services/toast.service';
+import { AutenticacaoService } from '../services/autenticacao.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExceptionInterceptor implements HttpInterceptor {
-  constructor(private toastService: ToastService) {}
+  constructor(
+    private toastService: ToastService,
+    private autenticacaoService: AutenticacaoService,
+    private router: Router
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -23,13 +29,30 @@ export class ExceptionInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
-        let mensagem: string = error.error.userMessage;
-        let errors = error.error.errors;
-        if (errors !== undefined && errors !== null) {
-          mensagem = errors[0].userMessage;
+        if (error.error.status === 403) {
+          let mensagem =
+            'Sessão expirou. para continuar é necessário realizar o login novamente.';
           this.toastService.exibirMensagem(mensagem, 5000, TipoMensagem.ERROR);
+          this.autenticacaoService.deslogar();
+
+          this.router.navigate(['']);
         } else {
-          this.toastService.exibirMensagem(mensagem, 5000, TipoMensagem.ERROR);
+          let mensagem: string = error.error.userMessage;
+          let errors = error.error.errors;
+          if (errors !== undefined && errors !== null) {
+            mensagem = errors[0].userMessage;
+            this.toastService.exibirMensagem(
+              mensagem,
+              5000,
+              TipoMensagem.ERROR
+            );
+          } else {
+            this.toastService.exibirMensagem(
+              mensagem,
+              5000,
+              TipoMensagem.ERROR
+            );
+          }
         }
         return throwError(error);
       })

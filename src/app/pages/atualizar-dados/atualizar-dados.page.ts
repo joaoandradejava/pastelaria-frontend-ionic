@@ -4,6 +4,7 @@ import { ClienteFullModel } from 'src/app/shared/models/cliente-full-model';
 import { TipoMensagem } from 'src/app/shared/models/tipo-mensagem';
 import { UsuarioUpdateInput } from 'src/app/shared/models/usuario-update-input';
 import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ValidadorFormulario } from 'src/app/shared/utils/validador-formulario';
@@ -21,7 +22,8 @@ export class AtualizarDadosPage implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private autenticacaoService: AutenticacaoService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -55,7 +57,6 @@ export class AtualizarDadosPage implements OnInit {
         .buscarPorId(this.autenticacaoService.getUsuarioAutenticado().id)
         .subscribe((data) => {
           this.clienteFullModel = data;
-          console.log(this.clienteFullModel);
           this.formGroup.get('nome').setValue(this.clienteFullModel.nome);
           this.formGroup.get('cpf').setValue(this.clienteFullModel.cpf);
           this.formGroup
@@ -90,9 +91,14 @@ export class AtualizarDadosPage implements OnInit {
 
   public confirmar(): void {
     if (this.formGroup.valid) {
+      this.loadingService.carregarLoading();
+
       let usuarioUpdateInput: UsuarioUpdateInput = this.formGroup.value;
       usuarioUpdateInput.cpf = this.formatarCpfSemMascara();
-      usuarioUpdateInput.cpf = usuarioUpdateInput.cpf === '' || usuarioUpdateInput.cpf.trim() === ''? undefined : usuarioUpdateInput.cpf
+      usuarioUpdateInput.cpf =
+        usuarioUpdateInput.cpf === '' || usuarioUpdateInput.cpf.trim() === ''
+          ? undefined
+          : usuarioUpdateInput.cpf;
       usuarioUpdateInput.telefone =
         this.getNumeroTelefoneSemMascara('telefone');
       usuarioUpdateInput.celular = this.getNumeroTelefoneSemMascara('celular');

@@ -21,8 +21,8 @@ export class ToastService {
       this.toastController
         .create({
           message: mensagem,
-          position: 'top',
           duration: duracao,
+          position: 'top',
           color:
             tipoMensagem === TipoMensagem.SUCESSO
               ? 'success'

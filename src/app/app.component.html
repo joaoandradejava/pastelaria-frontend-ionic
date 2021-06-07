@@ -3,12 +3,12 @@
     <ion-header>
       <ion-toolbar translucent>
         <div *ngIf="!isLogado(); else logado">
-          <ion-title>Menu</ion-title>
+          <ion-title class="texto-centralizado">Menu</ion-title>
         </div>
 
         <ng-template #logado>
           <div>
-            <ion-title>
+            <ion-title class="texto-centralizado">
               <ion-icon name="person-circle-outline"></ion-icon> {{getUsuarioAutenticado().nome}}
             </ion-title>
           </div>
@@ -18,7 +18,7 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item *ngFor="let rota of rotas" [routerLink]="[rota.url]" routerLinkActive="router-link-active">
+        <ion-item *ngFor="let rota of rotas" [routerLink]="[rota.url]" routerLinkActive="selected">
           <ion-icon [name]="rota.icone" slot="start"></ion-icon>
           <ion-label>{{rota.nome}}</ion-label>
         </ion-item>

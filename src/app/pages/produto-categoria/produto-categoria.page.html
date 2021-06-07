@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['']" routerLinkActive="router-link-active">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{categoriaModel?.nome}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="produto-categoria">
+    <div class="spinner" *ngIf="produtos.length === 0; else produtosLista">
+      <ion-spinner name="crescent"></ion-spinner>
+      <h1>Carregando</h1>
+    </div>
+
+    <ng-template #produtosLista>
+      <div>
+        <ion-list>
+          <ion-item *ngFor="let produto of produtos" class="espacamento-item">
+            <ion-thumbnail slot="start" style="margin-right: 30px;" [routerLink]="['/produto-item', produto?.id]"
+              routerLinkActive="router-link-active">
+              <ion-img [src]="produto.avatarUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label [routerLink]="['/produto-item', produto?.id]" routerLinkActive="router-link-active">
+              <h2 class="card-titulo">{{produto?.nome}}</h2>
+              <span class="card-descricao">{{produto?.descricao}}</span>
+              <h2 class="cor-preco">{{produto?.preco | currency}}</h2>
+            </ion-label>
+            <ion-button (click)="addCarrinho(produto)" class="btn-color-carrinho">
+              <ion-icon name="cart-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais produtos...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+    </ng-template>
+
+  </div>
+</ion-content>

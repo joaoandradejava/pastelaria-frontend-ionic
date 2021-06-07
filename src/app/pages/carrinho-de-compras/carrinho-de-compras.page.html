@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Carrinho de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container">
+    <div *ngIf="carrinho === null; else temCarrinho" >
+      <h1 class="texto-centralizado">Você ainda não possui nenhum item no carrinho!</h1>
+    </div>
+    <ng-template #temCarrinho>
+      <ion-button class="espacamento" (click)="limparCarrinho()">
+        Limpar carrinho
+      </ion-button>
+      <div>
+        <table class="tabela">
+          <thead>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of carrinho.itens" >
+              <td>{{item.id}}</td>
+              <td>{{item.nome}}</td>
+              <td>{{item.preco | currency}}</td>
+              <td><ion-button size="small" color="danger" (click)="diminuirQuantidade(item)" shape="round">-</ion-button> {{item.quantidade}}X <ion-button size="small" color="success" (click)="aumentarQuantidade(item)" shape="round">+</ion-button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <ion-button (click)="finalizarPedido()" class="btn-finalizar-pedido" color="danger">
+            Finalizar Pedido
+          </ion-button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+</ion-content>

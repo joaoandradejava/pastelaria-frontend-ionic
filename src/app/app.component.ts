@@ -20,7 +20,10 @@ export class AppComponent {
   ]
 
   rotasAutenticadas: Rota[] = [
-    {nome: 'Atualizar dados', url: 'atualizar-dados', icone: 'pencil-outline'}
+    {nome: 'Atualizar dados', url: 'atualizar-dados', icone: 'pencil-outline'},
+    {nome: 'Meus Endereços', url: 'meus-enderecos', icone: 'locate-outline'},
+    {nome: 'Meu Carrinho de Compras', url: 'carrinho-de-compras', icone: 'cart-sharp'},
+    {nome: 'Meus Pedidos', url: 'meus-pedidos', icone: 'clipboard-outline'}
   ]
 
   constructor(private autenticacaoService: AutenticacaoService) {}

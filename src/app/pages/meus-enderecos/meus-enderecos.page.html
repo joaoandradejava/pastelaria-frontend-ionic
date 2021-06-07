@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>meusEnderecos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Meus Endereços</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="meus-enderecos">
+    <ion-button [routerLink]="['/endereco-novo']" routerLinkActive="router-link-active">Novo</ion-button>
+
+
+    <div *ngIf="enderecosDoUsuario !== undefined && enderecosDoUsuario.length > 0; else naoTem">
+      <ion-list>
+        <ion-item *ngFor="let endereco of enderecosDoUsuario">
+          <ion-avatar>
+            <img src="../../../assets//home.svg" alt="">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{endereco?.cep}}</h3>
+            <h3>{{endereco?.endereco}} - {{endereco?.numero}} - {{endereco?.complemento}}</h3>
+            <h4>{{endereco?.estado}}/{{endereco?.cidade}}</h4>
+          </ion-label>
+          <ion-button (click)="deletarEndereco(endereco?.id)" color="danger">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+    <ng-template #naoTem>
+      <div>
+        <h1 class="texto-centralizado">Você não possui nenhum endereço de entrega!</h1>
+      </div>
+    </ng-template>
+
+
+  </div>
 
 </ion-content>

@@ -8,12 +8,13 @@ import {
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../services/autenticacao.service';
 import { UsuarioAutenticado } from '../models/usuario-autenticado';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenJwtInterceptor implements HttpInterceptor {
-  constructor(private autenticacaoService: AutenticacaoService) {}
+  constructor(private autenticacaoService: AutenticacaoService, private router: Router) {}
 
   intercept(
     req: HttpRequest<any>,

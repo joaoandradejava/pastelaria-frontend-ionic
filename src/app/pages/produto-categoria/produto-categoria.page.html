@@ -27,7 +27,7 @@
             <ion-label [routerLink]="['/produto-item', produto?.id]" routerLinkActive="router-link-active">
               <h2 class="card-titulo">{{produto?.nome}}</h2>
               <span class="card-descricao">{{produto?.descricao}}</span>
-              <h2 class="cor-preco">{{produto?.preco | currency}}</h2>
+              <h2 class="cor-preco">{{produto?.preco | currency: 'BRL': true}}</h2>
             </ion-label>
             <ion-button (click)="addCarrinho(produto)" class="btn-color-carrinho">
               <ion-icon name="cart-outline"></ion-icon>

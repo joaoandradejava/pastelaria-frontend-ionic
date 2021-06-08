@@ -18,7 +18,7 @@
             <h3>{{pedido?.data | date}}</h3>
           </ion-label>
           <ion-label>
-            <h3>Valor total: {{pedido?.valorTotal | currency}}</h3>
+            <h3>Valor total: {{pedido?.valorTotal | currency: 'BRL': true}}</h3>
             <h3>Situação: {{pedido?.situacaoPedido}}</h3>
             <h3>Situacao do Pagamento: {{pedido?.pagamento.situacaoPagamento}}</h3>
           </ion-label>

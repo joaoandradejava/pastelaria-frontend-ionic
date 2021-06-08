@@ -31,7 +31,7 @@
             <tr *ngFor="let item of carrinho.itens">
               <td>{{item.id}}</td>
               <td>{{item.nome}}</td>
-              <td>{{item.preco | currency}}</td>
+              <td>{{item.preco | currency: 'BRL': true}}</td>
               <td>
                 <ion-button size="small" color="danger" (click)="diminuirQuantidade(item)" shape="round">-</ion-button>
                 {{item.quantidade}}X <ion-button size="small" color="success" (click)="aumentarQuantidade(item)"
@@ -40,7 +40,7 @@
             </tr>
             <tr class="tr-valor-total">
               <td colspan="3" class="valor-total font-maior">Valor Total</td>
-              <td><span class="cor-preco font-maior">{{valorTotal() | currency}}</span></td>
+              <td><span class="cor-preco font-maior">{{valorTotal() | currency: 'BRL': true}}</span></td>
             </tr>
           </tbody>
         </table>

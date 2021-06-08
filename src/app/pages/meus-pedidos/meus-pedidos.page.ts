@@ -18,7 +18,7 @@ export class MeusPedidosPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
-    console.log('entrou nno view')
+    this.pedidos = []
     this.buscarpedidos();
   }
 

@@ -33,13 +33,6 @@ export class CarrinhoDeComprasPage implements OnInit {
   ngOnInit() {
     this.buscarCarrinho();
 
-    this.usuarioService
-      .buscarEnderecoDoCliente(
-        this.autenticacaoService.getUsuarioAutenticado().id
-      )
-      .subscribe((data) => {
-        this.enderecos = data;
-      });
   }
 
   buscarCarrinho(): void {
@@ -54,6 +47,16 @@ export class CarrinhoDeComprasPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.enderecos = [
+
+    ]
+    this.usuarioService
+    .buscarEnderecoDoCliente(
+      this.autenticacaoService.getUsuarioAutenticado().id
+    )
+    .subscribe((data) => {
+      this.enderecos = data;
+    });
     this.carrinho = this.carrinhoService.buscarCarrinho();
   }
 

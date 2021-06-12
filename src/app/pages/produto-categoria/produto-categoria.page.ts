@@ -26,7 +26,9 @@ export class ProdutoCategoriaPage implements OnInit {
     private carrinhoService: CarrinhoDeCompraService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.route.params.subscribe((data) => {
       this.categoriaService.buscarPorId(data.id).subscribe((categoria) => {
         this.categoriaModel = categoria;
@@ -35,10 +37,9 @@ export class ProdutoCategoriaPage implements OnInit {
     });
   }
 
-
   public addCarrinho(produto: ProdutoModel): void {
-    this.carrinhoService.adicionarItemNoCarrinho(produto)
-   }
+    this.carrinhoService.adicionarItemNoCarrinho(produto);
+  }
 
   buscarProdutos(): void {
     this.produtoService

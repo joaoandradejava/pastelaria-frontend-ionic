@@ -48,7 +48,11 @@ export class AtualizarDadosPage implements OnInit {
       celular: ['', [Validators.minLength(16), Validators.maxLength(16)]],
     });
 
+  }
+
+  ionViewWillEnter() {
     this.preencherFormComDadosDoUsuario();
+
   }
 
   preencherFormComDadosDoUsuario(): void {

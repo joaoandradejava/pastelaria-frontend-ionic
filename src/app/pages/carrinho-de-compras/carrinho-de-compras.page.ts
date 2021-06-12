@@ -30,34 +30,22 @@ export class CarrinhoDeComprasPage implements OnInit {
     private toastService: ToastService
   ) {}
 
-  ngOnInit() {
-    this.buscarCarrinho();
-
-  }
+  ngOnInit() {}
 
   buscarCarrinho(): void {
+    this.enderecos = [];
     this.carrinho = this.carrinhoService.buscarCarrinho();
     this.usuarioService
-    .buscarEnderecoDoCliente(
-      this.autenticacaoService.getUsuarioAutenticado().id
-    )
-    .subscribe((data) => {
-      this.enderecos = data;
-    });
+      .buscarEnderecoDoCliente(
+        this.autenticacaoService.getUsuarioAutenticado().id
+      )
+      .subscribe((data) => {
+        this.enderecos = data;
+      });
   }
 
   ionViewWillEnter() {
-    this.enderecos = [
-
-    ]
-    this.usuarioService
-    .buscarEnderecoDoCliente(
-      this.autenticacaoService.getUsuarioAutenticado().id
-    )
-    .subscribe((data) => {
-      this.enderecos = data;
-    });
-    this.carrinho = this.carrinhoService.buscarCarrinho();
+    this.buscarCarrinho();
   }
 
   diminuirQuantidade(item: ItemCarrinho): void {
@@ -70,10 +58,10 @@ export class CarrinhoDeComprasPage implements OnInit {
     this.buscarCarrinho();
   }
 
-  public valorTotal(): number{
-    let carrinho: Carrinho = this.carrinhoService.buscarCarrinho()
+  public valorTotal(): number {
+    let carrinho: Carrinho = this.carrinhoService.buscarCarrinho();
 
-    return carrinho.calcularValorTotal()
+    return carrinho.calcularValorTotal();
   }
 
   public finalizarPedido(): void {
